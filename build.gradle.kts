@@ -24,15 +24,19 @@ repositories {
 }
 
 dependencies {
+	// Spring
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	// Utils
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 application {
-	mainClass = "vasilyevps.urlshortener.UrlShortenerApplication.java"
+	mainClass = "vasilyevps.urlshortener.UrlShortenerApplication"
 }
 
 tasks.jacocoTestReport {

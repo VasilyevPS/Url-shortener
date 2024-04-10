@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:5001}
+
+spring:
+  application:
+    name: UrlShortener
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  output:
+    ansi:
+      enabled: always
