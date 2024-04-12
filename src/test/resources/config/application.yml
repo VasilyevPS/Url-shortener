@@ -1,0 +1,21 @@
+base-url: /api
+
+spring:
+  application:
+    name: UrlShortener
+
+  jpa:
+    show-sql: true
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    root: INFO
