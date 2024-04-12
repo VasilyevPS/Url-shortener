@@ -19,6 +19,10 @@ public class UrlService {
 
     public UrlDto create(UrlCreateDto urlCreateDto) {
         Url url = toEntity(urlCreateDto);
+        Url existedUrl = urlRepository.findByUrlKey(url.getUrlKey()).orElse(null);
+        if (existedUrl != null) {
+            return toDto(existedUrl);
+        }
         urlRepository.save(url);
         return toDto(url);
     }
