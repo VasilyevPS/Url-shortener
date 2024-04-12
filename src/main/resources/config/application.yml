@@ -5,9 +5,12 @@ spring:
   application:
     name: UrlShortener
 
-  liquibase:
-    enabled: true
-    change-log: classpath:db/changelog/db.changelog-master.yaml
+  h2:
+    console:
+      enabled: true
+      path: /h2console/
+      settings:
+        web-allow-others: true
 
   mvc:
     hiddenmethod:

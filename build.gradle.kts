@@ -26,10 +26,14 @@ repositories {
 dependencies {
 	// Spring
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	// Utils
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+	// Database
+	runtimeOnly("com.h2database:h2")
 
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
