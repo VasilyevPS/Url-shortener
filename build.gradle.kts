@@ -32,6 +32,7 @@ dependencies {
 	// Utils
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+	implementation("commons-codec:commons-codec:1.16.1")
 	// Database
 	runtimeOnly("com.h2database:h2")
 
