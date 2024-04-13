@@ -17,7 +17,7 @@ import static vasilyevps.urlshortener.utils.TestUtils.ROOT_URL;
 
 @AutoConfigureMockMvc
 @SpringBootTest
-public class RootControllerIT {
+public class UrlControllerIT {
 
     @Autowired
     TestUtils testUtils;
