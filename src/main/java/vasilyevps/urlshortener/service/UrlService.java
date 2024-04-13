@@ -27,6 +27,10 @@ public class UrlService {
         return toDto(url);
     }
 
+    public String getUrlByUrkKey(String urlKey) {
+        return urlRepository.findByUrlKey(urlKey).orElseThrow().getLongUrl();
+    }
+
     private Url toEntity(UrlCreateDto urlCreateDto) {
         Url url = new Url();
         String longUrl = urlCreateDto.getUrl();
