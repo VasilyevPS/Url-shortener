@@ -15,8 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @Component
 public class TestUtils {
-    public static final String BASE_URL = "/api";
-    public static final String ROOT_URL = BASE_URL;
+    public static final String ROOT_URL = "";
     public static final String DEFAULT_URL = "https://www.google.ru";
     public static final String DEFAULT_URL_KEY = "3853400aca";
     private static final ObjectMapper MAPPER = new ObjectMapper().findAndRegisterModules();

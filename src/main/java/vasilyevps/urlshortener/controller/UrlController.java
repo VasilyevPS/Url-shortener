@@ -17,7 +17,7 @@ import vasilyevps.urlshortener.service.UrlService;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("${base-url}")
+@RequestMapping
 public class UrlController {
 
     public static final String URL_KEY = "/{urlKey}";
