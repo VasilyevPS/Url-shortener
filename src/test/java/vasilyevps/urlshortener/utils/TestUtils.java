@@ -15,7 +15,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @Component
 public class TestUtils {
-    public static final String ROOT_URL = "";
+    public static final String ROOT_ADDRESS = "";
+    public static final String API_ROOT_ADDRESS = ROOT_ADDRESS + "/api";
     public static final String DEFAULT_URL = "https://www.google.ru";
     public static final String DEFAULT_URL_KEY = "3853400aca";
     private static final ObjectMapper MAPPER = new ObjectMapper().findAndRegisterModules();
@@ -32,12 +33,12 @@ public class TestUtils {
         urlRepository.deleteAll();
     }
 
-    public ResultActions addDefaultUrl() throws Exception {
-        return addUrl(DEFAULT_URL);
+    public ResultActions addDefaultUrl(String address) throws Exception {
+        return addUrl(DEFAULT_URL, address);
     }
 
-    public ResultActions addUrl(String url) throws Exception {
-        final var request = post(ROOT_URL)
+    public ResultActions addUrl(String url, String address) throws Exception {
+        final var request = post(address)
                 .content(asJson(url))
                 .contentType(APPLICATION_JSON);
 
