@@ -27,7 +27,17 @@ public class UrlController {
 
     @GetMapping
     public String welcome() {
-        return "This page is under construction";
+        return "index";
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ModelAndView create(@Valid final UrlCreateDto urlCreateDto) {
+        ModelAndView model = new ModelAndView("index");
+        UrlDto urlDto = urlService.create(urlCreateDto);
+        model.addObject(urlDto);
+        model.addObject("message", "success");
+        return model;
     }
 
     @PostMapping("/api")
