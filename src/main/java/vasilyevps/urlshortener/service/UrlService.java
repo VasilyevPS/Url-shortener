@@ -33,8 +33,8 @@ public class UrlService {
 
     private Url toEntity(UrlCreateDto urlCreateDto) {
         Url url = new Url();
-        String longUrl = urlCreateDto.getUrl();
-        url.setLongUrl(urlUtils.normalizeUrl(longUrl));
+        String longUrl = urlUtils.normalizeUrl(urlCreateDto.getUrl());
+        url.setLongUrl(longUrl);
         String urlKey = urlUtils.generateUrlKey(longUrl);
         url.setUrlKey(urlKey);
         String shortUrl = urlUtils.createShortUrl(urlKey);

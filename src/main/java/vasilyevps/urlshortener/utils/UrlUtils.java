@@ -14,8 +14,9 @@ public class UrlUtils {
 
     public String normalizeUrl(String longUrl) {
         String normalizedUrl = longUrl.split("\\?")[0];
-        if (normalizedUrl.charAt(normalizedUrl.length() - 1) != '/') {
-            normalizedUrl += '/';
+        int length = normalizedUrl.length();
+        if (normalizedUrl.charAt(length - 1) == '/') {
+            normalizedUrl = normalizedUrl.substring(0, length - 1);
         }
         return normalizedUrl.toLowerCase();
     }
@@ -23,6 +24,6 @@ public class UrlUtils {
     public String createShortUrl(String urlKey) {
         String port = System.getenv().getOrDefault("PORT", "5001");
 
-        return "localhost:" + port + "/" + urlKey + "/";
+        return "localhost:" + port + "/" + urlKey;
     }
 }
