@@ -22,8 +22,7 @@ public class UrlUtils {
     }
 
     public String createShortUrl(String urlKey) {
-        String port = System.getenv().getOrDefault("PORT", "5001");
-
-        return "localhost:" + port + "/" + urlKey;
+        String port = System.getenv().getOrDefault("PORT", "8080");
+        return "http://localhost:" + port + "/" + urlKey;
     }
 }
