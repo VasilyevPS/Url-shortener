@@ -14,6 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static vasilyevps.urlshortener.utils.TestUtils.API_ROOT_ADDRESS;
 import static vasilyevps.urlshortener.utils.TestUtils.DEFAULT_URL_KEY;
+import static vasilyevps.urlshortener.utils.TestUtils.DEFAULT_URL_SHORT;
 import static vasilyevps.urlshortener.utils.TestUtils.ROOT_ADDRESS;
 
 @AutoConfigureMockMvc
@@ -61,5 +62,40 @@ public class UrlControllerIT {
         assertEquals(1, urlRepository.count());
     }
 
+    @Test
+    public void testCreate() throws Exception {
+        assertEquals(0, urlRepository.count());
+        testUtils.addDefaultUrl(ROOT_ADDRESS).andExpect(status().isCreated());
+        assertEquals(1, urlRepository.count());
+        var expected = urlRepository.findByUrlKey(DEFAULT_URL_KEY).orElse(null);
+        assertNotNull(expected);
+    }
+
+    @Test
+    public void testCreateInfoMissing() throws Exception {
+        assertEquals(0, urlRepository.count());
+        testUtils.addUrl("", ROOT_ADDRESS).andExpect(status().isUnprocessableEntity());
+        assertEquals(0, urlRepository.count());
+    }
+
+    @Test
+    public void testCreateTwice() throws Exception {
+        assertEquals(0, urlRepository.count());
+        testUtils.addDefaultUrl(ROOT_ADDRESS).andExpect(status().isCreated());
+        testUtils.addDefaultUrl(ROOT_ADDRESS).andExpect(status().isCreated());
+        assertEquals(1, urlRepository.count());
+    }
+
+    @Test
+    public void testGetLongUrl() throws Exception {
+        testUtils.addDefaultUrl(ROOT_ADDRESS).andExpect(status().isCreated());
+        final var request = get(DEFAULT_URL_SHORT);
+        var result = testUtils.perform(request).andExpect(status().isFound());
+    }
+
+//    @Test
+//    public void testGetLongUrlNotExisted() throws Exception {
+//
+//    }
 
 }
