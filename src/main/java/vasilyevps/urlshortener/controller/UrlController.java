@@ -49,7 +49,7 @@ public class UrlController {
 
     @GetMapping(URL_KEY)
     @ResponseStatus(HttpStatus.FOUND)
-    public ModelAndView redirectWithUsingRedirectPrefix(@PathVariable String urlKey) {
+    public ModelAndView getLongUrl(@PathVariable String urlKey) {
         String url = urlService.getUrlByUrkKey(urlKey);
         return new ModelAndView("redirect:" + url);
     }
