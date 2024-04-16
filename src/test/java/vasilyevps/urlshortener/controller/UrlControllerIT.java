@@ -93,9 +93,10 @@ public class UrlControllerIT {
         var result = testUtils.perform(request).andExpect(status().isFound());
     }
 
-//    @Test
-//    public void testGetLongUrlNotExisted() throws Exception {
-//
-//    }
+    @Test
+    public void testGetLongUrlNotExisted() throws Exception {
+        final var request = get(DEFAULT_URL_SHORT);
+        var result = testUtils.perform(request).andExpect(status().isNotFound());
+    }
 
 }
