@@ -2,6 +2,7 @@ package vasilyevps.urlshortener.utils;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Component
 public class UrlUtils {
@@ -22,7 +23,7 @@ public class UrlUtils {
     }
 
     public String createShortUrl(String urlKey) {
-        String port = System.getenv().getOrDefault("PORT", "8080");
-        return "http://localhost:" + port + "/" + urlKey;
+        String baseShortUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+        return baseShortUrl + "/" + urlKey;
     }
 }
