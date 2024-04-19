@@ -14,12 +14,12 @@ public class UrlUtils {
     }
 
     public String normalizeUrl(String longUrl) {
-        String normalizedUrl = longUrl.split("\\?")[0];
+        String normalizedUrl = longUrl;
         int length = normalizedUrl.length();
         if (normalizedUrl.charAt(length - 1) == '/') {
             normalizedUrl = normalizedUrl.substring(0, length - 1);
         }
-        return normalizedUrl.toLowerCase();
+        return normalizedUrl;
     }
 
     public String createShortUrl(String urlKey) {
