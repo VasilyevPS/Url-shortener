@@ -31,6 +31,11 @@ public class UrlService {
         return urlRepository.findByUrlKey(urlKey).orElseThrow().getLongUrl();
     }
 
+    public void deleteUrl(String urlKey) {
+        Long id = urlRepository.findByUrlKey(urlKey).orElseThrow().getId();
+        urlRepository.deleteById(id);
+    }
+
     private Url toEntity(UrlCreateDto urlCreateDto) {
         Url url = new Url();
         String longUrl = urlUtils.normalizeUrl(urlCreateDto.getUrl());

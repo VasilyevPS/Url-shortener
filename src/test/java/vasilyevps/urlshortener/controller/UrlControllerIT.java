@@ -10,6 +10,7 @@ import vasilyevps.urlshortener.utils.TestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static vasilyevps.urlshortener.utils.TestUtils.API_ROOT_ADDRESS;
@@ -90,13 +91,28 @@ public class UrlControllerIT {
     public void testGetLongUrl() throws Exception {
         testUtils.addDefaultUrl(ROOT_ADDRESS).andExpect(status().isCreated());
         final var request = get(DEFAULT_URL_SHORT);
-        var result = testUtils.perform(request).andExpect(status().isFound());
+        testUtils.perform(request).andExpect(status().isFound());
     }
 
     @Test
     public void testGetLongUrlNotExisted() throws Exception {
         final var request = get(DEFAULT_URL_SHORT);
-        var result = testUtils.perform(request).andExpect(status().isNotFound());
+        testUtils.perform(request).andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        testUtils.addDefaultUrl(ROOT_ADDRESS);
+        assertEquals(1, urlRepository.count());
+        final var request = delete(DEFAULT_URL_SHORT);
+        testUtils.perform(request).andExpect((status().isOk()));
+        assertEquals(0, urlRepository.count());
+    }
+
+    @Test
+    public void testDeleteNotExistedUrl() throws Exception {
+        final var request = delete(DEFAULT_URL_SHORT);
+        testUtils.perform(request).andExpect((status().isNotFound()));
     }
 
 }
