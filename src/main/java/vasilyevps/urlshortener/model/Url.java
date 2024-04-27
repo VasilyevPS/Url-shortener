@@ -46,4 +46,7 @@ public class Url {
     @CreationTimestamp
     @Temporal(TIMESTAMP)
     private Date createdAt;
+
+    @Column(columnDefinition = "int default 0")
+    private int visitsCount;
 }

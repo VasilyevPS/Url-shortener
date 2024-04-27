@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import vasilyevps.urlshortener.dto.UrlCreateDto;
 import vasilyevps.urlshortener.dto.UrlDto;
+import vasilyevps.urlshortener.model.Url;
 import vasilyevps.urlshortener.service.UrlService;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Controller
@@ -46,6 +50,13 @@ public class UrlController {
     @ResponseBody
     public UrlDto createAPI(@RequestBody @Valid final UrlCreateDto urlCreateDto) {
         return urlService.create(urlCreateDto);
+    }
+
+    @GetMapping("stats")
+    public String getAllUrls(Model model) {
+        List<Url> urls = urlService.getAllUrls();
+        model.addAttribute("urls", urls);
+        return "stats";
     }
 
     @GetMapping(URL_KEY)

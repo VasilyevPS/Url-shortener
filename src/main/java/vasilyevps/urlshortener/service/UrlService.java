@@ -9,6 +9,8 @@ import vasilyevps.urlshortener.model.Url;
 import vasilyevps.urlshortener.repository.UrlRepository;
 import vasilyevps.urlshortener.utils.UrlUtils;
 
+import java.util.List;
+
 @Service
 @Transactional
 @AllArgsConstructor
@@ -27,13 +29,19 @@ public class UrlService {
         return toDto(url);
     }
 
+    public List<Url> getAllUrls() {
+        return urlRepository.findAll();
+    }
+
     public String getUrlByUrkKey(String urlKey) {
-        return urlRepository.findByUrlKey(urlKey).orElseThrow().getLongUrl();
+        Url url = urlRepository.findByUrlKey(urlKey).orElseThrow();
+        url.setVisitsCount(url.getVisitsCount() + 1);
+        return url.getLongUrl();
     }
 
     public void deleteUrl(String urlKey) {
-        Long id = urlRepository.findByUrlKey(urlKey).orElseThrow().getId();
-        urlRepository.deleteById(id);
+        Url url = urlRepository.findByUrlKey(urlKey).orElseThrow();
+        urlRepository.deleteById(url.getId());
     }
 
     private Url toEntity(UrlCreateDto urlCreateDto) {

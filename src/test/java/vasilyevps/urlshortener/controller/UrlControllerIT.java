@@ -17,6 +17,7 @@ import static vasilyevps.urlshortener.utils.TestUtils.API_ROOT_ADDRESS;
 import static vasilyevps.urlshortener.utils.TestUtils.DEFAULT_URL_KEY;
 import static vasilyevps.urlshortener.utils.TestUtils.DEFAULT_URL_SHORT;
 import static vasilyevps.urlshortener.utils.TestUtils.ROOT_ADDRESS;
+import static vasilyevps.urlshortener.utils.TestUtils.STATS_ADDRESS;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -113,6 +114,12 @@ public class UrlControllerIT {
     public void testDeleteNotExistedUrl() throws Exception {
         final var request = delete(DEFAULT_URL_SHORT);
         testUtils.perform(request).andExpect((status().isNotFound()));
+    }
+
+    @Test
+    public void testGetAllUrls() throws Exception {
+        final var request = get(STATS_ADDRESS);
+        testUtils.perform(request).andExpect((status().isOk()));
     }
 
 }
