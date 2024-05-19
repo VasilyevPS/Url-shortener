@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -23,7 +22,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping
+@RequestMapping("")
 public class UrlController {
 
     public static final String URL_KEY = "/{urlKey}";
@@ -45,14 +44,7 @@ public class UrlController {
         return model;
     }
 
-    @PostMapping("/api")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public UrlDto createAPI(@RequestBody @Valid final UrlCreateDto urlCreateDto) {
-        return urlService.create(urlCreateDto);
-    }
-
-    @GetMapping("stats")
+    @GetMapping("/stats")
     public String getAllUrls(Model model) {
         List<Url> urls = urlService.getAllUrls();
         model.addAttribute("urls", urls);
