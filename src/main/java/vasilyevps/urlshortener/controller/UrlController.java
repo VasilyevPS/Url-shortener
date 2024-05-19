@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import vasilyevps.urlshortener.dto.UrlCreateDto;
 import vasilyevps.urlshortener.dto.UrlDto;
-import vasilyevps.urlshortener.model.Url;
 import vasilyevps.urlshortener.service.UrlService;
 
 import java.util.List;
@@ -46,7 +45,7 @@ public class UrlController {
 
     @GetMapping("/stats")
     public String getAllUrls(Model model) {
-        List<Url> urls = urlService.getAllUrls();
+        List<UrlDto> urls = urlService.getAllUrls();
         model.addAttribute("urls", urls);
         return "stats";
     }

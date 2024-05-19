@@ -29,8 +29,9 @@ public class UrlService {
         return toDto(url);
     }
 
-    public List<Url> getAllUrls() {
-        return urlRepository.findAll();
+    public List<UrlDto> getAllUrls() {
+        List<Url> urls = urlRepository.findAll();
+        return urls.stream().map(this::toDto).toList();
     }
 
     public String getUrlByUrkKey(String urlKey) {
@@ -60,6 +61,8 @@ public class UrlService {
         dto.setKey(url.getUrlKey());
         dto.setLongUrl(url.getLongUrl());
         dto.setShortUrl(url.getShortUrl());
+        dto.setCreatedAt(url.getCreatedAt());
+        dto.setVisitsCount(url.getVisitsCount());
         return dto;
     }
 }
