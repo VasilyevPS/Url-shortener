@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import vasilyevps.urlshortener.dto.UrlCreateDto;
@@ -58,9 +57,9 @@ public class UrlController {
     }
 
     @DeleteMapping(URL_KEY)
-    @ResponseBody
-    public void delete(@PathVariable String urlKey) {
+    public String delete(@PathVariable String urlKey) {
         urlService.deleteUrl(urlKey);
+        return "stats";
     }
 
 }

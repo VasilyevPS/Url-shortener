@@ -34,6 +34,7 @@
                             <th class="col-1">Длинная ссылка</th>
                             <th class="col-1">Создана</th>
                             <th class="col-1">Число посещений</th>
+                            <th class="col-1">Действие</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,13 @@
                             <td th:text="*{getLongUrl()}"></td>
                             <td th:text="${#dates.format(url.getCreatedAt(), 'dd-MM-yyyy HH:mm')}"></td>
                             <td th:text="*{getVisitsCount()}"></td>
+                            <td>
+                                <form th:method="delete" th:action="@{/{key}(key=*{getKey()})}"  class="rss-form text-body">
+                                    <div class="col-auto">
+                                        <button type="submit" class="h-100 btn btn-sm btn-danger px-sm-5">Удалить</button>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
