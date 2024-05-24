@@ -34,7 +34,7 @@ public class ApiController {
     @Operation(summary = "Create new short link")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201"),
-        @ApiResponse(responseCode = "422", content = @Content(schema = @Schema(example = "URL is missing")))
+        @ApiResponse(responseCode = "422",content = @Content(schema = @Schema(hidden = true)))
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,7 +46,7 @@ public class ApiController {
     @GetMapping(URL_KEY)
     @ApiResponses(value = {
         @ApiResponse(responseCode = "302", content = @Content(schema = @Schema(hidden = true))),
-        @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(example = "URL not found")))
+        @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(hidden = true)))
     })
     public ResponseEntity<String> getLongUrl(@PathVariable String urlKey) {
         String longUrl = urlService.getUrlByUrkKey(urlKey);
@@ -56,8 +56,8 @@ public class ApiController {
 
     @Operation(summary = "Delete short link")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", useReturnTypeSchema = true),
-        @ApiResponse(responseCode = "404", content = @Content(schema = @Schema(example = "URL not found")))
+        @ApiResponse(responseCode = "200"),
+        @ApiResponse(responseCode = "404")
     })
     @DeleteMapping(URL_KEY)
     public void delete(@PathVariable String urlKey) {
