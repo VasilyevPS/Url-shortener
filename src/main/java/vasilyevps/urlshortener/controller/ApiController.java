@@ -34,7 +34,7 @@ public class ApiController {
     @Operation(summary = "Create new short link")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201"),
-        @ApiResponse(responseCode = "422",content = @Content(schema = @Schema(hidden = true)))
+        @ApiResponse(responseCode = "422", content = @Content(schema = @Schema(hidden = true)))
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
