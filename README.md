@@ -13,4 +13,4 @@ The site can be opened locally at `http://localhost:8080/`
 * Use `make test` to test it
 
 ## Stack
-Java 21, Spring Boot 3.2, Gradle, Hibernate, H2, Thymeleaf, JUnit, Mockito, Swagger
+Java 21, Spring Boot 3.2, Gradle, Hibernate, H2, Thymeleaf, JUnit, MockWebServer, Swagger
